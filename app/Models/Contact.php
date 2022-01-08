@@ -9,10 +9,12 @@ class Contact extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['first_name', 'last_name', 'email', 'date_of_birth'];
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function phone_numbers()
+    public function phoneNumbers()
     {
         return $this->hasMany(PhoneNumber::class);
     }

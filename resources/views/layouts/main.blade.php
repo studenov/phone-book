@@ -7,15 +7,16 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>My Phone Book</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="">Main</a>
+        <a class="navbar-brand" href="{{ route('contacts.index') }}">Main</a>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Contacts</a>
+                    <a class="nav-link active" aria-current="page" href="{{ route('contacts.index') }}">Contacts</a>
                 </li>
             </ul>
         </div>
@@ -26,6 +27,7 @@
 </div>
 </body>
 <script>
+    //dynamic date validation. 18yo+ only
     $(function(){
         let dtToday = new Date();
         let month = dtToday.getMonth() + 1;
@@ -37,17 +39,25 @@
             day = '0' + day.toString();
         let minDate = year + '-' + month + '-' + day;
         let maxDate = year + '-' + month + '-' + day;
-        $('#birthdate').attr('max', maxDate);
+        $('#date_of_birth').attr('max', maxDate);
     });
+
+    //dynamic adding number fields
     function add_number(){
-        let x = document.getElementById("form");
+        let parent = document.getElementById("nums");
         let new_field = document.createElement("input");
         new_field.setAttribute("type", "tel");
         new_field.setAttribute("name", "phone_numbers[]");
-        let pos = x.childElementCount;
-        x.insertBefore(new_field, x.childNodes[pos]);
+        new_field.setAttribute('class', "form-control mb-2");
+        new_field.setAttribute('placeholder', "+380__________");
+        new_field.setAttribute('maxlength', "13");
+        new_field.setAttribute('pattern', "^\\+?3?8?(0\\d{9})$");
+        parent.appendChild(new_field);
     }
 
+    function delete_number(){
+        let parent = document.getElementById("nums");
+        parent.removeChild(parent.lastChild);
+    }
 </script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </html>
