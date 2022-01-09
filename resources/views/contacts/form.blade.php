@@ -57,13 +57,13 @@
                             @include('layouts.error', ['fieldName' => 'phone_numbers.*'])
                             @foreach($contact->phoneNumbers as $number)
                                 <input type="tel" class="form-control mb-2" name="phone_numbers[]" id="phone_numbers"
-                                       placeholder="+380__________" pattern="^\+?3?8?(0\d{9})$" maxlength="13"
+                                       placeholder="+380__________" pattern="^(\+38)?(0\d{9})$" maxlength="13"
                                 value="{{ isset($number) ? $number->phone_number : null }}">
                             @endforeach
                         @else
                         @include('layouts.error', ['fieldName' => 'phone_numbers.*'])
                         <input type="tel" class="form-control mb-2" name="phone_numbers[]" id="phone_numbers"
-                               placeholder="+380__________" pattern="^\+?3?8?(0\d{9})$" maxlength="13">
+                               placeholder="+380__________" pattern="^(\+38)?(0\d{9})$" maxlength="13">
                         @endif
                     </div>
                     <div>
