@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ContactRequest;
 use App\Models\Contact;
 use Illuminate\Http\Request;
 
@@ -34,7 +35,7 @@ class ContactController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ContactRequest $request)
     {
         $contact = Contact::create($request->all());
         foreach ($request->input('phone_numbers') as $number) {
@@ -72,7 +73,7 @@ class ContactController extends Controller
      * @param Contact $contact
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Contact $contact)
+    public function update(ContactRequest $request, Contact $contact)
     {
         $contact->update($request->all());
         $contact->phoneNumbers()->delete();

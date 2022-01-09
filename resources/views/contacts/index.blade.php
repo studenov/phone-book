@@ -3,6 +3,9 @@
 @section('content')
     <div class="col-md-12">
         <h1>Contacts</h1>
+        <div>
+            <a class="btn btn-success" type="button" href="{{ route('contacts.create') }}">Add contact</a>
+        </div>
         <table class="table">
             <tr>
                 <th>
@@ -51,7 +54,6 @@
             @endforeach
             </tbody>
         </table>
-        <a class="btn btn-success" type="button" href="{{ route('contacts.create') }}">Add contact</a>
     </div>
     {{ $contacts->withQueryString()->links() }}
 @endsection

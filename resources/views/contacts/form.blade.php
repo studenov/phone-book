@@ -17,6 +17,7 @@
                 <div class="input-group row">
                     <label for="first_name" class="col-sm-2 col-form-label">First name: </label>
                     <div class="col-sm-6">
+                        @include('layouts.error', ['fieldName' => 'first_name'])
                         <input type="text" class="form-control" name="first_name" id="first_name"
                                value="{{ old('first_name', isset($contact) ? $contact->first_name : null) }}">
                     </div>
@@ -25,6 +26,7 @@
                 <div class="input-group row">
                     <label for="last_name" class="col-sm-2 col-form-label">Last name: </label>
                     <div class="col-sm-6">
+                        @include('layouts.error', ['fieldName' => 'last_name'])
                         <input type="text" class="form-control" name="last_name" id="last_name"
                                value="{{ old('last_name', isset($contact) ? $contact->last_name : null) }}">
                     </div>
@@ -33,6 +35,7 @@
                 <div class="input-group row">
                     <label for="email" class="col-sm-2 col-form-label">Email: </label>
                     <div class="col-sm-6">
+                        @include('layouts.error', ['fieldName' => 'email'])
                         <input type="text" class="form-control" name="email" id="email"
                                value="{{ old('email', isset($contact) ? $contact->email : null) }}">
                     </div>
@@ -41,6 +44,7 @@
                 <div class="input-group row">
                     <label for="date_of_birth" class="col-sm-2 col-form-label">Date of birth: </label>
                     <div class="col-sm-6">
+                        @include('layouts.error', ['fieldName' => 'date_of_birth'])
                         <input type="date" class="form-control" name="date_of_birth" id="date_of_birth" required
                                value="{{ old('date_of_birth', isset($contact) ? $contact->date_of_birth : null) }}">
                     </div>
@@ -50,12 +54,14 @@
                     <label for="phone_numbers" class="col-sm-2 col-form-label">Phone numbers (form +380123456789 or 0123456789): </label>
                     <div class="col-sm-6" id="nums">
                         @if(isset($contact))
+                            @include('layouts.error', ['fieldName' => 'phone_numbers.*'])
                             @foreach($contact->phoneNumbers as $number)
                                 <input type="tel" class="form-control mb-2" name="phone_numbers[]" id="phone_numbers"
                                        placeholder="+380__________" pattern="^\+?3?8?(0\d{9})$" maxlength="13"
-                                value="{{ old('phone_numbers', isset($number) ? $number->phone_number : null) }}">
+                                value="{{ isset($number) ? $number->phone_number : null }}">
                             @endforeach
                         @else
+                        @include('layouts.error', ['fieldName' => 'phone_numbers.*'])
                         <input type="tel" class="form-control mb-2" name="phone_numbers[]" id="phone_numbers"
                                placeholder="+380__________" pattern="^\+?3?8?(0\d{9})$" maxlength="13">
                         @endif
