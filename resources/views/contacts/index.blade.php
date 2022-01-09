@@ -12,16 +12,16 @@
                     #
                 </th>
                 <th>
-                    First name
+                    @sortablelink('first_name', 'First name')
                 </th>
                 <th>
-                    Last name
+                    @sortablelink('last_name', 'Last name')
                 </th>
                 <th>
-                    Email
+                    @sortablelink('email', 'Email')
                 </th>
                 <th>
-                    Date of birth
+                    @sortablelink('date_of_birth', 'Date of birth')
                 </th>
                 <th>
                     Phone numbers
