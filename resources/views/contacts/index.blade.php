@@ -6,6 +6,16 @@
         <div>
             <a class="btn btn-success" type="button" href="{{ route('contacts.create') }}">Add contact</a>
         </div>
+
+        <form class="form-inline" method="GET">
+            <div class="form-group mb-2">
+                <label for="filter" class="col-sm-2 col-form-label">Filter</label>
+                <input type="text" class="form-control" id="filter" name="filter" placeholder="Product name..." value="{{ $filter }}">
+            </div>
+            <button type="submit" class="btn btn-dark mb-2">Filter</button>
+            <a href="{{ route("contacts.index") }}" class="btn btn-warning mb-2">Reset</a>
+        </form>
+
         <table class="table">
             <tr>
                 <th>

@@ -20,4 +20,13 @@ class Contact extends Model
     {
         return $this->hasMany(PhoneNumber::class);
     }
+
+    public function scopeSearchItems($query, $filter)
+    {
+        return $query->where('contacts.first_name', 'like', '%'.$filter.'%')
+                     ->orWhere('contacts.last_name', 'like', '%'.$filter.'%')
+                     ->orWhere('contacts.email', 'like', '%'.$filter.'%')
+                     ->orWhere('contacts.date_of_birth', 'like', '%'.$filter.'%')
+                     ->orWhereRelation('phoneNumbers', 'phone_number', 'like', '%'.$filter.'%');
+    }
 }

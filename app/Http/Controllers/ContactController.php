@@ -13,10 +13,19 @@ class ContactController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $contacts = Contact::with('phoneNumbers')->sortable()->paginate(10);
-        return view('contacts.index', compact('contacts'));
+        $filter = $request->query('filter');
+        if (!empty($filter)) {
+            $contacts = Contact::sortable()
+                ->searchItems($filter)
+                ->paginate(10);
+        } else {
+            $contacts = Contact::with('phoneNumbers')
+                ->sortable()
+                ->paginate(10);
+        }
+        return view('contacts.index', compact('contacts', 'filter'));
     }
 
     /**
